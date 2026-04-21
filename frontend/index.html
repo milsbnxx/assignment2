@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Traffic Globe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="panel">
+        <h1>Traffic Globe</h1>
+        <p class="subtitle">Live visualization of incoming traffic packets</p>
+
+        <div class="controls">
+          <button id="pauseBtn" class="btn">Pause Drawing</button>
+          <label class="check">
+            <input type="checkbox" id="suspiciousOnly" />
+            Show suspicious only
+          </label>
+          <div class="windowControls">
+            <span>Analytics window:</span>
+            <div class="windowButtons">
+              <button class="windowBtn active" data-window="30">30s</button>
+              <button class="windowBtn" data-window="60">60s</button>
+              <button class="windowBtn" data-window="120">120s</button>
+              <button class="windowBtn" data-window="300">300s</button>
+            </div>
+          </div>
+          <label class="sliderLabel">
+            Point lifetime: <span id="lifetimeValue">10</span>s
+            <input type="range" id="lifetimeSlider" min="5" max="25" value="10" />
+          </label>
+        </div>
+
+        <div class="stats">
+          <div class="card"><span>Total</span><strong id="totalCount">0</strong></div>
+          <div class="card"><span>Suspicious</span><strong id="suspiciousCount">0</strong></div>
+          <div class="card"><span>Ratio</span><strong id="ratioCount">0%</strong></div>
+          <div class="card"><span>Last Packet</span><strong id="lastPacket">-</strong></div>
+        </div>
+
+        <section class="topLocations">
+          <h2 id="topLocationsTitle">Top Locations (Last 30s)</h2>
+          <ol id="topLocationsList"></ol>
+        </section>
+
+        <section class="activity">
+          <h2 id="activityTitle">Activity (packets/sec, Last 30s)</h2>
+          <canvas id="activityChart" width="320" height="120"></canvas>
+        </section>
+
+      </aside>
+
+      <main class="viewport">
+        <div id="sceneContainer"></div>
+      </main>
+
+      <aside class="rightAnalytics">
+        <section class="analyticsCard">
+          <h2>Suspicious Share</h2>
+          <canvas id="suspiciousChart" width="320" height="150"></canvas>
+        </section>
+
+        <section class="analyticsCard">
+          <h2>Latitude Distribution</h2>
+          <p id="latFilterState" class="mutedText">Filter: all zones</p>
+          <canvas id="latitudeChart" width="320" height="160"></canvas>
+          <p class="mutedText tiny">Click a bar to filter points by latitude zone.</p>
+        </section>
+      </aside>
+    </div>
+    <footer class="pageEnd">End of page</footer>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>

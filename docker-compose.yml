@@ -1,0 +1,30 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: traffic_backend
+    ports:
+      - "5001:5000"
+    environment:
+      - RETENTION_SECONDS=300
+      - TOP_WINDOW_SECONDS=60
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: traffic_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  sender:
+    build:
+      context: .
+      dockerfile: sender/Dockerfile
+    container_name: traffic_sender
+    depends_on:
+      - backend
+    restart: "no"

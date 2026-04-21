@@ -1,0 +1,265 @@
+:root {
+  --bg: #06131c;
+  --panel-bg: rgba(6, 21, 33, 0.86);
+  --panel-border: rgba(104, 180, 255, 0.24);
+  --text: #e7f2ff;
+  --muted: #94b8d9;
+  --accent: #3db8ff;
+  --warn: #ff6b42;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  font-family: "Space Grotesk", sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at 20% 10%, #174364, #07131d 45%, #03080e 100%);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 340px 1fr 300px;
+}
+
+.panel {
+  border-right: 1px solid var(--panel-border);
+  background: var(--panel-bg);
+  backdrop-filter: blur(8px);
+  padding: 20px 16px;
+  overflow-y: auto;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.7rem;
+  letter-spacing: 0.02em;
+}
+
+.subtitle {
+  margin: 8px 0 18px;
+  color: var(--muted);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.btn {
+  border: 1px solid rgba(61, 184, 255, 0.4);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(40, 126, 180, 0.8), rgba(22, 74, 109, 0.9));
+  color: var(--text);
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.08);
+}
+
+.check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--muted);
+}
+
+.sliderLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.windowControls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--muted);
+}
+
+.windowButtons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.windowBtn {
+  border: 1px solid rgba(111, 175, 224, 0.3);
+  border-radius: 8px;
+  padding: 6px 4px;
+  color: #cde8ff;
+  background: rgba(7, 27, 43, 0.9);
+  cursor: pointer;
+  font-size: 0.78rem;
+}
+
+.windowBtn.active {
+  border-color: rgba(61, 184, 255, 0.95);
+  background: rgba(31, 104, 150, 0.65);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.card {
+  background: rgba(4, 14, 24, 0.75);
+  border: 1px solid rgba(111, 175, 224, 0.22);
+  border-radius: 12px;
+  padding: 10px;
+}
+
+.card span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 6px;
+}
+
+.card strong {
+  font-size: 1.05rem;
+}
+
+h2 {
+  font-size: 0.92rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a6d5ff;
+  margin: 0 0 10px;
+}
+
+.topLocations,
+.activity,
+.analyticsCard {
+  background: rgba(4, 14, 24, 0.75);
+  border: 1px solid rgba(111, 175, 224, 0.22);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.topLocations ol {
+  margin: 0;
+  padding-left: 0;
+  color: #d0e8ff;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 90px;
+  list-style-position: inside;
+  overflow-x: hidden;
+  word-break: break-word;
+}
+
+#activityChart {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: rgba(2, 8, 14, 0.9);
+}
+
+#suspiciousChart,
+#latitudeChart {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  background: rgba(2, 8, 14, 0.9);
+}
+
+#latitudeChart {
+  cursor: pointer;
+}
+
+.mutedText {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.tiny {
+  margin-top: 6px;
+  font-size: 0.74rem;
+}
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  border-right: 1px solid rgba(104, 180, 255, 0.16);
+}
+
+#sceneContainer {
+  position: absolute;
+  inset: 0;
+}
+
+.rightAnalytics {
+  background: var(--panel-bg);
+  border-left: 1px solid var(--panel-border);
+  backdrop-filter: blur(8px);
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.pageEnd {
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  color: #8db9dd;
+  border-top: 1px solid rgba(104, 180, 255, 0.22);
+  background: rgba(4, 14, 24, 0.85);
+}
+
+@media (max-width: 960px) {
+  html,
+  body {
+    overflow: auto;
+  }
+
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 56vh auto;
+    flex: none;
+  }
+
+  .panel {
+    border-right: 0;
+    border-bottom: 1px solid var(--panel-border);
+  }
+
+  .viewport {
+    border-right: 0;
+    border-bottom: 1px solid rgba(104, 180, 255, 0.16);
+  }
+
+  .rightAnalytics {
+    position: static;
+    width: auto;
+    padding: 12px;
+    max-height: none;
+    border-left: 0;
+    border-top: 1px solid var(--panel-border);
+  }
+}
